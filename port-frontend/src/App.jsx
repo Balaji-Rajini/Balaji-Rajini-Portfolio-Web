@@ -49,14 +49,16 @@ const handleSubmit= async(e)=>{
 e.preventDefault();
 
 try{
-  await fetch("http://localhost:5000/api/contact",{
-    method:"POST" , 
-    headers :{
-      "Content-Type" :"application/json",
-    } ,
-    body:JSON.stringify(formData),
+ await fetch(
+  "https://portfolio-backend-xxxx.onrender.com/api/contact",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
   }
- )
+);
 
 
 
