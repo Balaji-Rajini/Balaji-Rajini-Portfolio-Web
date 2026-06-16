@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const Contact = require("../models/contact");
+const Contact = require("../models/ontact");
 
 router.post("/", async (req, res) => {
     console.log("Route Hitted")
