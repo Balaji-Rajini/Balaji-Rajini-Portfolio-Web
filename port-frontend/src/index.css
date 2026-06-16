@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  margin:0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body{
+  background-color:#09090B ;
+font-family: 'Manrope', sans-serif;}
+
+
+
+@keyframes slideInTop {
+  from {
+    transform: translateY(-300px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+.animate-slideInTop {
+  animation: slideInTop 1s ease-out forwards;
+}
+
+
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-300px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 1s ease-out forwards;
+}
+
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(300px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideInRight {
+  animation: slideInRight 1s ease-out forwards;
+} 
+
+
+@keyframes slideInBottom {
+  from {
+    transform: translateY(300px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideInBottom{
+  animation: slideInBottom 1s ease-out forwards;
+} 
+
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px; /* offset for fixed navbar */
+}
+
