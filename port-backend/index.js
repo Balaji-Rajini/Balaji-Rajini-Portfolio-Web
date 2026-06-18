@@ -1,7 +1,7 @@
  const mongoose  = require('mongoose')
  const express = require('express')
  const cors = require('cors')
-
+require("dotenv").config();
 
 
 const contactRoute = require("./routes/contactRoute")
@@ -16,12 +16,11 @@ app.get("/", (req, res) => {
   res.send("Backend Working");
 });
 
-mongoose.connect('mongodb://127.0.0.1:27017/Portfolio-Db').then(()=>{
-    console.log("database connected")
-}).catch(err=>{
-    console.log(err , "connection error")
-})
+require("dotenv").config();
 
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("Database Connected"))
+  .catch(err => console.log(err));
 
 
 app.listen(5000 , ()=>{
