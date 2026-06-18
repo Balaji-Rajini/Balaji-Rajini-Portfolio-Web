@@ -50,7 +50,7 @@ e.preventDefault();
 
 try{
  await fetch(
-  "https://portfolio-backend-xxxx.onrender.com/api/contact",
+  "https://balaji-rajini-portfolio-web-1.onrender.com/api/contact",
   {
     method: "POST",
     headers: {
