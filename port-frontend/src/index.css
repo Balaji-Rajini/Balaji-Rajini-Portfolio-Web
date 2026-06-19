@@ -86,6 +86,7 @@ font-family: 'Manrope', sans-serif;}
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px; /* offset for fixed navbar */
+  scroll-padding-top: 90px;
+   /* offset for fixed navbar */
 }
 
