@@ -1,8 +1,5 @@
-
 const dotenv = require("dotenv");
-
-const result = dotenv.config( {path: "./port.env"});
-
+dotenv.config({ path: "./port.env" });
 // console.log(result);
 // console.log("MONGO_URI =", process.env.MONGO_URI);
 
@@ -23,11 +20,22 @@ app.get("/", (req, res) => {
   res.send("Backend Working");
 });
 
-require("dotenv").config();
+
+
+console.log("MONGO_URI =", process.env.MONGO_URI);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("Database Connected"))
   .catch(err => console.log(err));
+
+
+
+  console.log("EMAIL_USER:", process.env.EMAIL_USER);
+console.log(
+  "EMAIL_PASS:",
+  process.env.EMAIL_PASS ? "FOUND" : "MISSING"
+);
+
 
 
 app.listen(5000 , ()=>{
