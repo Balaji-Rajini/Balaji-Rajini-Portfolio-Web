@@ -1,7 +1,14 @@
- const mongoose  = require('mongoose')
+
+const dotenv = require("dotenv");
+
+const result = dotenv.config( {path: "./port.env"});
+
+// console.log(result);
+// console.log("MONGO_URI =", process.env.MONGO_URI);
+
+const mongoose  = require('mongoose')
  const express = require('express')
  const cors = require('cors')
-require("dotenv").config();
 
 
 const contactRoute = require("./routes/contactRoute")
