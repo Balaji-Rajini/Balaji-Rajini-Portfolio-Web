@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
   try {
     const { name, email, enquiry } = req.body;
 
-    console.log("ROute Hitted")
+    console.log("Route Hitted")
     const contact = await Contact.create({
       name,
       email,
