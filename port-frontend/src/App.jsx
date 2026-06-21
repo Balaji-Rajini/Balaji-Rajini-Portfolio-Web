@@ -53,7 +53,11 @@ setFormdata({
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-
+setFormdata({
+  name:"",
+  email:"",
+  enquiry:""
+})
   try {
     console.log("Submitting...");
 
@@ -68,10 +72,8 @@ const handleSubmit = async (e) => {
       }
     );
 
-    // console.log("Status:", response.status);
 
     const data = await response.json();
-    // console.log("Response:", data);
 console.log("Enquiry Submitted Succesfully")
     alert("Enquiry Submitted Successfully");
   } catch (err) {
