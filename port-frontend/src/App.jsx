@@ -68,11 +68,11 @@ const handleSubmit = async (e) => {
       }
     );
 
-    console.log("Status:", response.status);
+    // console.log("Status:", response.status);
 
     const data = await response.json();
-    console.log("Response:", data);
-
+    // console.log("Response:", data);
+console.log("Enquiry Submitted Succesfully")
     alert("Enquiry Submitted Successfully");
   } catch (err) {
     console.log("FETCH ERROR:", err);
