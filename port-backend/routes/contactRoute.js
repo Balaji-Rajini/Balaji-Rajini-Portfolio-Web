@@ -1,25 +1,27 @@
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
+const dns = require("dns");
 
 const Contact = require("../models/Contact");
+
+// Force IPv4 (helps on Render)
+dns.setDefaultResultOrder("ipv4first");
 
 console.log("Creating transporter...");
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 10000,
+host: "smtp.gmail.com",
+port: 587,
+secure: false,
+auth: {
+user: process.env.EMAIL_USER,
+pass: process.env.EMAIL_PASS,
+},
+connectionTimeout: 10000,
+greetingTimeout: 10000,
+socketTimeout: 10000,
 });
-
-
 
 router.post("/", async (req, res) => {
 console.log("=================================");
@@ -37,12 +39,10 @@ const contact = await Contact.create({
   enquiry,
 });
 
-
+console.log("MongoDB document created");
 console.log("BEFORE EMAIL");
 
-res.status(201).json(contact);
-
- const info = await transporter.sendMail({
+const info = await transporter.sendMail({
   from: process.env.EMAIL_USER,
   to: "balajitheprogrammer@gmail.com",
   subject: "New Portfolio Enquiry",
@@ -52,26 +52,26 @@ res.status(201).json(contact);
     <p><strong>Email:</strong> ${email}</p>
     <p><strong>Enquiry:</strong> ${enquiry}</p>
   `,
-})
-
-
-
+});
 
 console.log("EMAIL SENT");
 console.log("Message ID:", info.messageId);
 console.log("Accepted:", info.accepted);
 console.log("Rejected:", info.rejected);
+
 console.log("SENDING RESPONSE TO FRONTEND");
 
-
-console.log("RESPONSE SENT");
-console.log("=================================");
+return res.status(201).json({
+  success: true,
+  message: "Enquiry submitted successfully",
+  data: contact,
+});
 
 } catch (error) {
 console.log("ERROR OCCURRED");
-console.log(error);
+console.error(error);
 
-res.status(500).json({
+return res.status(500).json({
   success: false,
   message: error.message,
 });
