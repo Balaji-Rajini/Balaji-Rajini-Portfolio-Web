@@ -19,13 +19,7 @@ const transporter = nodemailer.createTransport({
   socketTimeout: 10000,
 });
 
-transporter.verify((error, success) => {
-if (error) {
-console.log("VERIFY ERROR:", error);
-} else {
-console.log("MAIL SERVER READY");
-}
-});
+
 
 router.post("/", async (req, res) => {
 console.log("=================================");
@@ -48,7 +42,7 @@ console.log("BEFORE EMAIL");
 
 res.status(201).json(contact);
 
-transporter.sendMail({
+ const info = await transporter.sendMail({
   from: process.env.EMAIL_USER,
   to: "balajitheprogrammer@gmail.com",
   subject: "New Portfolio Enquiry",
@@ -59,12 +53,7 @@ transporter.sendMail({
     <p><strong>Enquiry:</strong> ${enquiry}</p>
   `,
 })
-.then(info => {
-  console.log("EMAIL SENT:", info.messageId);
-})
-.catch(err => {
-  console.log("MAIL ERROR:", err);
-});
+
 
 
 
