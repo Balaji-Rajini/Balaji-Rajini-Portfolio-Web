@@ -69,7 +69,9 @@ transporter.sendMail({
 
 
 console.log("EMAIL SENT");
-
+console.log("Message ID:", info.messageId);
+console.log("Accepted:", info.accepted);
+console.log("Rejected:", info.rejected);
 console.log("SENDING RESPONSE TO FRONTEND");
 
 
