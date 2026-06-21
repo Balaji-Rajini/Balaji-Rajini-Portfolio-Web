@@ -7,11 +7,16 @@ const Contact = require("../models/Contact");
 console.log("Creating transporter...");
 
 const transporter = nodemailer.createTransport({
-service: "gmail",
-auth: {
-user: process.env.EMAIL_USER,
-pass: process.env.EMAIL_PASS,
-},
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 10000,
 });
 
 transporter.verify((error, success) => {
@@ -43,8 +48,7 @@ console.log("BEFORE EMAIL");
 
 res.status(201).json(contact);
 
-
-const info = await transporter.sendMail({
+transporter.sendMail({
   from: process.env.EMAIL_USER,
   to: "balajitheprogrammer@gmail.com",
   subject: "New Portfolio Enquiry",
@@ -54,7 +58,15 @@ const info = await transporter.sendMail({
     <p><strong>Email:</strong> ${email}</p>
     <p><strong>Enquiry:</strong> ${enquiry}</p>
   `,
+})
+.then(info => {
+  console.log("EMAIL SENT:", info.messageId);
+})
+.catch(err => {
+  console.log("MAIL ERROR:", err);
 });
+
+
 
 console.log("EMAIL SENT");
 
