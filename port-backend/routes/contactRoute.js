@@ -28,17 +28,17 @@ router.post("/", async (req, res) => {
 
     console.log("Saved:", contact);
 console.log("BEfore email")
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: "balajitheprogrammer@gmail.com",
-      subject: "New Portfolio Enquiry",
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Enquiry:</strong> ${enquiry}</p>
-      `,
-    });
+    // await transporter.sendMail({
+    //   from: process.env.EMAIL_USER,
+    //   to: "balajitheprogrammer@gmail.com",
+    //   subject: "New Portfolio Enquiry",
+    //   html: `
+    //     <h2>New Contact Form Submission</h2>
+    //     <p><strong>Name:</strong> ${name}</p>
+    //     <p><strong>Email:</strong> ${email}</p>
+    //     <p><strong>Enquiry:</strong> ${enquiry}</p>
+    //   `,
+    // });
 
     console.log("After Email ");
 
