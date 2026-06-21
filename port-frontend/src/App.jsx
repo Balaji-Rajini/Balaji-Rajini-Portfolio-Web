@@ -56,7 +56,9 @@ e.preventDefault();
 
 try{
  await fetch(
-  "https://balaji-rajini-portfolio-web-1.onrender.com/api/contact",
+ "https://balaji-rajini-portfolio-web-1.onrender.com/api/contact",
+  // await fetch(
+  // "http://localhost:5000/api/contact",
   {
     method: "POST",
     headers: {
