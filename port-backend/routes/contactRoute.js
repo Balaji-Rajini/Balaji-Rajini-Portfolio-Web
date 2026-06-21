@@ -41,6 +41,9 @@ const contact = await Contact.create({
 
 console.log("BEFORE EMAIL");
 
+res.status(201).json(contact);
+
+
 const info = await transporter.sendMail({
   from: process.env.EMAIL_USER,
   to: "balajitheprogrammer@gmail.com",
@@ -57,10 +60,6 @@ console.log("EMAIL SENT");
 
 console.log("SENDING RESPONSE TO FRONTEND");
 
-res.status(201).json({
-  success: true,
-  contact,
-});
 
 console.log("RESPONSE SENT");
 console.log("=================================");
