@@ -51,41 +51,34 @@ setFormdata({
 })
 }
 
-const handleSubmit= async(e)=>{
-e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-try{
-  console.log("Submitting to:", "http://localhost:5000/api/contact");
-  await fetch(
-  "https://balaji-rajini-portfolio-web-1.onrender.com/api/contact",
-   //await fetch(
-  //"http://localhost:5000/api/contact",   
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(formData),
+  try {
+    console.log("Submitting...");
+
+    const response = await fetch(
+      "https://balaji-rajini-portfolio-web-1.onrender.com/api/contact",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    console.log("Status:", response.status);
+
+    const data = await response.json();
+    console.log("Response:", data);
+
+    alert("Enquiry Submitted Successfully");
+  } catch (err) {
+    console.log("FETCH ERROR:", err);
+    alert("Failed to submit enquiry");
   }
-);
-
-
-console.log("Response URL:", response.url);
-console.log("Response Status:", response.status);
-
-alert("Enquiry Submitted Successfully")
-setFormdata({
-  name:"",
-  email:"",
-  enquiry:"",
-})
-}catch(err){
-  console.log(err)
-  alert("failed to submit enquiry...")
-}
-
-
-}
+};
 
   return (
   
